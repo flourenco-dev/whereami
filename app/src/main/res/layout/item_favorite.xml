@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_marginTop="@dimen/padding_half"
+        android:layout_marginBottom="@dimen/padding_half"
+        android:layout_marginStart="@dimen/padding"
+        android:layout_marginEnd="@dimen/padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/favorite_card_corner_radius"
+        app:cardBackgroundColor="@color/light_grey">
+
+        <TextView
+                android:id="@+id/streetText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:textSize="@dimen/favorite_street_text"
+                android:textColor="@color/colorAccent"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/padding"
+                tools:text="Street 0ne"/>
+
+</androidx.cardview.widget.CardView>

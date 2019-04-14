@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nearby_places_card_height"
+        app:cardCornerRadius="@dimen/nearby_places_card_corner_radius"
+        app:cardBackgroundColor="@color/light_grey">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_double"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/labelText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:textSize="@dimen/nearby_places_label_text_size"
+                android:textColor="@color/colorAccent"
+                tools:text="Street 0ne"/>
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+        <TextView
+                android:id="@+id/distanceText"
+                android:layout_gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textSize="@dimen/nearby_places_distance_text_size"
+                android:textColor="@color/grey"
+                tools:text="20000 m"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

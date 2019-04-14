@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/streetText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            android:textSize="@dimen/detail_street_text_size"
+            android:textColor="@color/colorAccent"
+            tools:text="Newcastle Street"/>
+
+    <TextView
+            android:id="@+id/postalCodeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/detail_pc_text_size"
+            android:textColor="@color/grey"
+            android:layout_marginTop="@dimen/padding"
+            tools:text="SN1 2, Swindon"/>
+
+    <TextView
+            android:id="@+id/coordinatesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/detail_pc_text_size"
+            android:textColor="@color/grey"
+            tools:text="51.56196, -1.77598"/>
+
+    <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    <TextView
+            android:id="@+id/distanceText"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="@dimen/detail_pc_text_size"
+            android:textColor="@color/grey"
+            tools:text="20000 m"/>
+
+</LinearLayout>
