@@ -75,6 +75,6 @@ class FavoritesFragment : DialogFragment(), FavoritesAdapter.OnItemClickListener
     }
 
     companion object {
-        private const val DEFAULT_ZOOM = 30f
+        private const val DEFAULT_ZOOM = 12f
     }
 }

@@ -114,7 +114,7 @@ class DetailActivity : FragmentActivity() {
 
     companion object {
         private const val extraPlace = "extraPlace"
-        private const val DEFAULT_ZOOM = 30f
+        private const val DEFAULT_ZOOM = 12f
 
         fun getDetailIntent(context: Context, place: Place)
                 = Intent(context, DetailActivity::class.java).apply {

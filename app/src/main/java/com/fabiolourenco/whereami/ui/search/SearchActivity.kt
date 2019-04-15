@@ -25,10 +25,10 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_search.*
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), PlacesNearbyAdapter.OnItemClickListener, OnSuccessListener<Location> {
+class SearchActivity : AppCompatActivity(), PlacesNearbyAdapter.OnItemClickListener, OnSuccessListener<Location> {
 
     // Provider to get device location information
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -41,9 +41,12 @@ class MainActivity : AppCompatActivity(), PlacesNearbyAdapter.OnItemClickListene
     private val placesNearby: MutableList<Suggestion> = ArrayList()
     private lateinit var adapter: PlacesNearbyAdapter
 
+    // This flag will be used to avoid going to DetailActivity when the orientation changes
+    private var allowDetailScreen = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_search)
 
         adapter = PlacesNearbyAdapter(placesNearby, this)
         adapter.setHasStableIds(true)
@@ -68,6 +71,7 @@ class MainActivity : AppCompatActivity(), PlacesNearbyAdapter.OnItemClickListene
 
     override fun onItemClick(placeNearby: Suggestion) {
         placeNearby.locationId?.let {
+            allowDetailScreen = true
             selectedPlace = placeNearby
             // Get geocode for this address
             searchViewModel.getGeocodeLocation(it)
@@ -228,20 +232,25 @@ class MainActivity : AppCompatActivity(), PlacesNearbyAdapter.OnItemClickListene
 
         searchViewModel.geocodeLocation.observe(this, Observer { position ->
             Timber.d("geocode location updated - geocode: $position")
-            position?.let {
-                val place = Place(selectedPlace?.locationId ?: "",
-                    selectedPlace?.label ?: "",
-                    selectedPlace?.address,
-                    selectedPlace?.distance ?: 0,
-                    it)
+            if (allowDetailScreen) {
+                position?.let {
+                    val place = Place(
+                        selectedPlace?.locationId ?: "",
+                        selectedPlace?.label ?: "",
+                        selectedPlace?.address,
+                        selectedPlace?.distance ?: 0,
+                        it
+                    )
 
-                startActivity(DetailActivity.getDetailIntent(this, place))
+                    startActivity(DetailActivity.getDetailIntent(this, place))
 
-            } ?: run {
-                Snackbar.make(mainContainer, "Unable to retrieve position!", Snackbar.LENGTH_SHORT)
+                } ?: run {
+                    Snackbar.make(mainContainer, "Unable to retrieve position!", Snackbar.LENGTH_SHORT)
+                }
+
+                loadingView.isVisible = false
+                allowDetailScreen = false
             }
-
-            loadingView.isVisible = false
         })
 
         searchViewModel.favorites.observe(this, Observer { favorites ->
